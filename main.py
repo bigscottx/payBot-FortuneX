@@ -485,7 +485,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 "🥈 FORTUNEX STARTER – ₦7,500\n"
                 "• 🎊 Instant Fortune Claim: ₦6,500\n"
                 "• 🛜 Freebie: Instant $50 Casino credit — 100% withdrawable\n"
-                "• 💰 ₦1,500 for every 15 mins spent on the site\n
+                "• 💰 ₦1,500 for every 15 mins spent on the site\n"
                 "  (Earn approx. ₦12,000 in 2 hours) — instant withdrawal 💃\n"
                 "• 📤 Watch Comedy Videos: ₦200 per video\n"
                 "• 🏍 Fortune Box: ₦200 per box\n"
