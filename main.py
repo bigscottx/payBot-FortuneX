@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# main.py — Animo Main Bot for Telegram (management 3 patched)
+# main.py — FortuneX Main Bot for Telegram (management 3 patched)
 # Requirements:
 #   pip install python-telegram-bot==20.7 psycopg[binary] python-dotenv flask pydub
 #
@@ -40,7 +40,7 @@ app = Flask('')
 
 @app.route('/')
 def home():
-    return "Animo is alive!"
+    return "FortuneX is alive!"
 
 
 def run():
@@ -59,7 +59,7 @@ GROUP_LINK = os.getenv("GROUP_LINK", "")
 SITE_LINK = os.getenv("SITE_LINK", "")
 AI_BOOST_LINK = os.getenv("AI_BOOST_LINK", "")
 DAILY_TASK_LINK = os.getenv("DAILY_TASK_LINK", "")
-WEBAPP_URL = os.getenv("WEBAPP_URL", "https://Animo.onrender.com/app")
+WEBAPP_URL = os.getenv("WEBAPP_URL", "https://FortuneX.onrender.com/app")
 
 # Validate environment variables
 if not BOT_TOKEN:
@@ -86,8 +86,8 @@ COUPON_PAYMENT_ACCOUNTS = {
 # Predefined FAQs
 FAQS = {
     "what_is_ethereal": {
-        "question": "What is Animo?",
-        "answer": "Animo is a platform where you earn money by completing tasks like taking a walk, reading posts, playing games, sending Snapchat streaks, and inviting friends."
+        "question": "What is FortuneX?",
+        "answer": "FortuneX is a platform where you earn money by completing tasks like taking a walk, reading posts, playing games, sending Snapchat streaks, and inviting friends."
     },
     "payment_methods": {
         "question": "What payment methods are available?",
@@ -288,8 +288,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             conn.commit()
         keyboard = [[InlineKeyboardButton("🚀 Get Started", callback_data="menu")]]
         await update.message.reply_text(
-            "Welcome to Animo!\n\n"
-            "Social Media is the new Oil Money and Animo will help you get started mining form it.\n"
+            "Welcome to FortuneX!\n\n"
+            "Social Media is the new Oil Money and FortuneX will help you get started mining form it.\n"
             "Get paid for using your phone and doing what you love most.\n"
             "• Read posts ➜ earn $2.5/10 words\n• Take a Walk ➜ earn $5\n"
             "• Connect with friends with streaks ➜ earn up to $20\n"
@@ -299,7 +299,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         reply_keyboard = [["/menu(🔙)"]]
         if is_registered(chat_id):
-            reply_keyboard.append([KeyboardButton(text="Play Animo", web_app=WebAppInfo(url=f"{WEBAPP_URL}/?chat_id={chat_id}"))])
+            reply_keyboard.append([KeyboardButton(text="Play FortuneX", web_app=WebAppInfo(url=f"{WEBAPP_URL}/?chat_id={chat_id}"))])
     except psycopg.Error as e:
         logger.error(f"Database error in start: {e}")
         await update.message.reply_text("An error occurred while accessing the database. Please try again later.")
@@ -311,10 +311,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def cmd_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_user.id
     if not is_registered(chat_id):
-        await update.message.reply_text("Please complete registration to get login's to Animo.")
+        await update.message.reply_text("Please complete registration to get login's to FortuneX.")
         return
     kb = [[KeyboardButton(
-        text="Play Animo",
+        text="Play FortuneX",
         web_app=WebAppInfo(
             url=f"{WEBAPP_URL}/?chat_id={chat_id}&username={update.effective_user.username or 'guest'}"
         )
@@ -467,44 +467,56 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 [InlineKeyboardButton("🔙 Main Menu", callback_data="menu")]
             ]
             await query.edit_message_text(
-                "💥 HOW ANIMO WORKS 💼🌍\n\n"
-                "ANIMO is a digital earning platform that helps you learn, earn, and grow — all from your smartphone. 📱\n"
-                "You get paid for simple daily actions like walking, posting, gaming, and more! 💰\n"
+                "🔥 HOW FORTUNEX WORKS 💼📱\n\n"
+                "FortuneX is a digital and advertising platform that pays you for every activity on the site.\n"
+                "You earn every second and minute you spend scrolling, learning, teaching, laughing, reading,\n"
+                "or even listening to music! 🔥\n"
                 "— — —\n\n"
-                "🥇 GOLD PACKAGE – ₦15,000\n"
-                "• 💸 Sponsor Commission: ₦13,000\n"
-                "• 💰 Instant Cashback: ₦13,000\n"
-                "• 💫 1st Level Spill: ₦400\n"
-                "• 🔁 2nd Level Spill: ₦100\n"
-                "• 🏃 Walk-To-Earn: ₦10 per step\n"
-                "• 📰 Article Post: ₦1,000\n"
-                "• 📸 Story Upload: ₦1,500\n"
+                "🥇 FORTUNEX PLUS – ₦14,500\n"
+                "• 🎊 Instant Fortune Claim: ₦12,000\n"
+                "• 🛜 Freebie: Instant $100 Casino credit — 100% withdrawable\n"
+                "• 🎬 1 Month Free Netflix & Prime Video Subscription\n"
+                "• 💰 ₦3,000 for every 15 mins spent on the site\n"
+                "  (Earn approx. ₦24,000 in 2 hours) — instant withdrawal 💃\n"
+                "• 📤 Watch Comedy Videos: ₦1,000 per video\n"
+                "• 🏍 Fortune Box: ₦500 per box\n"
+                "• 🚶‍♂ Movie Reviews (Netflix/Prime Video): ₦500 per review\n"
                 "— — —\n\n"
-                "🥈 SILVER PACKAGE – ₦10,000\n"
-                "• 💸 Sponsor Commission: ₦9,000\n"
-                "• 💰 Instant Cashback: ₦8,500\n"
-                "• 💫 1st Level Spill: ₦200\n"
-                "• 🔁 2nd Level Spill: ₦100\n"
-                "• 🏃 Walk-To-Earn: ₦6 per step\n"
-                "• 📰 Article Post: ₦700\n"
-                "• 📸 Story Upload: ₦1,000\n"
+                "🥈 FORTUNEX STARTER – ₦7,500\n"
+                "• 🎊 Instant Fortune Claim: ₦6,500\n"
+                "• 🛜 Freebie: Instant $50 Casino credit — 100% withdrawable\n"
+                "• 💰 ₦1,500 for every 15 mins spent on the site\n
+                "  (Earn approx. ₦12,000 in 2 hours) — instant withdrawal 💃\n"
+                "• 📤 Watch Comedy Videos: ₦200 per video\n"
+                "• 🏍 Fortune Box: ₦200 per box\n"
+                "• 🚶‍♂ Movie Reviews (Netflix/Prime Video): ₦200 per review\n"
                 "— — —\n\n"
-                "✨ EXTRA WAYS TO EARN\n"
-                "• 🎮 Play Games\n"
-                "• 💼 Offer Digital Gigs\n"
-                "• 📷 Join Photo Contests\n"
-                "• 📚 Publish Books\n"
-                "• 🏙️ Digital Real Estate\n"
+                "✨ MORE EARNING FEATURES (Both Packages)\n"
+                "• 📡 Go Live on TikTok: Earn ₦29,000 for every 10 mins livestream\n"
+                "• 🎙 Music Rating (FortuneX): ₦500 per music\n"
+                "• 🎭 K-drama Review: ₦500 per review\n"
+                "• 📲 Telegram Status Post: ₦500 per post\n"
                 "— — —\n\n"
-                "🎓 MENTORSHIP COMMUNITY BENEFITS\n"
-                "Once you join, you’ll get access to an exclusive mentorship group where you’ll learn how to:\n"
-                "• 💰 Earn millions on ANIMO\n"
-                "• 🎬 Create viral content\n"
-                "• 📈 Run ads that convert\n"
-                "• 🔓 Unlock premium tools (Canva, Netflix, Gemini & more AI	creator tools for free) for free\n"
+                "💫 ADDITIONAL BENEFITS\n"
+                "• 🏦 Get paid for written songs and short skit scripts\n"
+                "• 📄 Earn by teaching foreigners how to cook your local dishes\n"
+                "• 🎓 Free access to all digital courses\n"
                 "— — —\n\n"
-                "🚀 Choose “Gold” or “Silver” and get started with your preferred package!\n"
-                "🎓 FOR PROPER GUIDANCE: you will gain access and be added to a mentorship class to learn how to make up to ₦300,000 weekly with the opportunities on Animo after registration.\n"
+                "💖 ADDITIONAL EARNINGS\n"
+                "• 💰 Connect Bonus: ₦12,000 (Plus) / ₦6,500 (Starter)\n"
+                "• 🔄 Indirect Connect: ₦400\n"
+                "• 🌀 2nd Indirect Bonus: ₦200\n"
+                "— — —\n\n"
+                "🏦 PAYMENT INFO\n"
+                "• 📆 Withdraw daily on FortuneX between 5PM – 6PM\n"
+                "— — —\n\n"
+                "💳 ENROLLMENT FEES\n"
+                "• PLUS: ₦14,500\n"
+                "• STARTER: ₦7,500\n"
+                "You’ll receive my personal tutorial on how to withdraw your instant $100 casino bonus.\n"
+                "🚀 Choose “Plus” or “Starter” in the next Menu and get started with your preferred package!\n"
+                 "— — —\n\n"
+                "🎓 FOR PROPER GUIDANCE: you will register and get added to my VVIP Mentorship Group to gain access to my mentorship class where you will learn how to make up to ₦300,000 weekly with the opportunities on FortuneX.\n"
                 " Ensure to listen to the Voice Note below to understand more about the features you will benefit from...",
                 reply_markup=InlineKeyboardMarkup(keyboard)
             )
@@ -517,7 +529,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     await context.bot.send_voice(
                         chat_id=query.message.chat_id,
                         voice=voice,
-                        caption="Animo Explained 🎧",
+                        caption="FortuneX Explained 🎧",
                         reply_markup=voice_markup
                     )
             except FileNotFoundError:
@@ -550,7 +562,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         elif data in ["coupon_standard", "coupon_x"]:
             package = "Standard" if data == "coupon_standard" else "X"
             # Price mapping: Standard = 10000, X = 15000 (per your instruction)
-            price = 10000 if package == "Standard" else 15000
+            price = 7500 if package == "Standard" else 14500
             quantity = user_state.get(chat_id, {}).get('coupon_quantity')
             if not quantity:
                 await query.edit_message_text("Quantity not found. Please start coupon purchase again.", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔙 Main Menu", callback_data="menu")]]))
@@ -626,8 +638,8 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 return
             # Added reg_x option (Upgrade) here
             keyboard = [
-                [InlineKeyboardButton("✈Animo Silver Package (₦10,000)", callback_data="reg_standard")],
-                [InlineKeyboardButton("🚀Animo Gold Package (₦15,000)", callback_data="reg_x")],
+                [InlineKeyboardButton("✈FortuneX Starter Package (₦7,500)", callback_data="reg_standard")],
+                [InlineKeyboardButton("🚀FortuneX Plus Package (₦14,500)", callback_data="reg_x")],
                 [InlineKeyboardButton("🔙 Main Menu", callback_data="menu")],
             ]
             await query.edit_message_text("Choose your package:", reply_markup=InlineKeyboardMarkup(keyboard))
@@ -1241,8 +1253,8 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     raise ValueError
                 user_state[chat_id]['coupon_quantity'] = quantity
                 keyboard = [
-                    [InlineKeyboardButton("Animo Silver Package Coupons (₦10,000)", callback_data="coupon_standard")],
-                    [InlineKeyboardButton("Animo Gold Package Coupons (₦15,000)", callback_data="coupon_x")],
+                    [InlineKeyboardButton("FortuneX Silver Package Coupons (₦7,500)", callback_data="coupon_standard")],
+                    [InlineKeyboardButton("FortuneX Gold Package Coupons (₦14,500)", callback_data="coupon_x")],
                     [InlineKeyboardButton("🔙 Main Menu", callback_data="menu")],
                 ]
                 await update.message.reply_text("Select the package for your coupons:", reply_markup=InlineKeyboardMarkup(keyboard))
@@ -1348,7 +1360,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 [InlineKeyboardButton("No, disable reminders", callback_data="disable_reminders")],
             ]
             await context.bot.send_message(for_user, "Would you like to receive daily reminders to complete your tasks?", reply_markup=InlineKeyboardMarkup(keyboard))
-            reply_keyboard = [["/menu(🔙)"], [KeyboardButton(text="Play Animo", web_app=WebAppInfo(url=f"{WEBAPP_URL}/?chat_id={for_user}"))],
+            reply_keyboard = [["/menu(🔙)"], [KeyboardButton(text="Play FortuneX", web_app=WebAppInfo(url=f"{WEBAPP_URL}/?chat_id={for_user}"))],
                               [KeyboardButton(text="Play Aviator", web_app=WebAppInfo(url=f"{WEBAPP_URL}/aviator?chat_id={chat_id}"))]]
             await context.bot.send_message(
                 for_user,
@@ -1409,7 +1421,7 @@ async def daily_reminder(context: ContextTypes.DEFAULT_TYPE):
         user_ids = [row["chat_id"] for row in cursor.fetchall()]
         for user_id in user_ids:
             try:
-                await context.bot.send_message(user_id, "🌟 Daily Reminder: Complete your Animo tasks to maximize your earnings!")
+                await context.bot.send_message(user_id, "🌟 Daily Reminder: Complete your FortuneX tasks to maximize your earnings!")
                 log_interaction(user_id, "daily_reminder")
             except Exception as e:
                 logger.error(f"Failed to send reminder to {user_id}: {e}")
@@ -1424,7 +1436,7 @@ async def daily_summary(context: ContextTypes.DEFAULT_TYPE):
         cursor.execute("SELECT COUNT(*) FROM users WHERE registration_date >= %s", (start_time,))
         new_users = cursor.fetchone()["count"]
         cursor.execute("""
-            SELECT SUM(CASE package WHEN 'Standard' THEN 10000 WHEN 'X' THEN 15000 ELSE 0 END)
+            SELECT SUM(CASE package WHEN 'Standard' THEN 7500 WHEN 'X' THEN 14500 ELSE 0 END)
             FROM users
             WHERE approved_at >= %s AND payment_status = 'registered'
         """, (start_time,))
@@ -1469,7 +1481,7 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
             [InlineKeyboardButton("How It Works", callback_data="how_it_works")],
             [InlineKeyboardButton("Purchase Coupon Code", callback_data="coupon")],
             [InlineKeyboardButton("💸 Get Registered Now", callback_data="package_selector")],
-            #[InlineKeyboardButton("🚀 Upgrade To Animo Pro", callback_data="package_selector")],  # upgrade quick button
+            #[InlineKeyboardButton("🚀 Upgrade To FortuneX Pro", callback_data="package_selector")],  # upgrade quick button
             [InlineKeyboardButton("❓ Help", callback_data="help")],
         ]
         if user and user["payment_status"] == 'registered':
@@ -1485,19 +1497,19 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         text = "Select an option below:"
         reply_keyboard = [["/menu(🔙)"]]
         if user and user["payment_status"] == 'registered':
-            reply_keyboard.append([KeyboardButton(text="Start Earning On Animo", web_app=WebAppInfo(url=f"{WEBAPP_URL}?chat_id={chat_id}"))])
+            reply_keyboard.append([KeyboardButton(text="Start Earning On FortuneX", web_app=WebAppInfo(url=f"{WEBAPP_URL}?chat_id={chat_id}"))])
         if update.callback_query:
             await update.callback_query.edit_message_text(text, reply_markup=InlineKeyboardMarkup(keyboard))
           #  await context.bot.send_message(
           #     chat_id,
-          #      "Use the buttons below to access Main Menu and Start Earning on Animo too",
+          #      "Use the buttons below to access Main Menu and Start Earning on FortuneX too",
          #       reply_markup=ReplyKeyboardMarkup(reply_keyboard, resize_keyboard=True)
          #   )
         else:
             await update.message.reply_text(text, reply_markup=InlineKeyboardMarkup(keyboard))
             #await context.bot.send_message(
             #    chat_id,
-            #    "Use the buttons below to access the Menu button or Login to your Animo Account(Available if you're registered):",
+            #    "Use the buttons below to access the Menu button or Login to your FortuneX Account(Available if you're registered):",
            #     reply_markup=ReplyKeyboardMarkup(reply_keyboard, resize_keyboard=True)
            # )
         log_interaction(chat_id, "show_main_menu")
